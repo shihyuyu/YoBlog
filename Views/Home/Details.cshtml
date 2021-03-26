@@ -1,0 +1,36 @@
+﻿@model YoBlog.Models.DirectoryModel
+
+<div>
+    <h4>DirectoryModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DirTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DirTitle)
+        </dd>
+
+        <dt>
+            預覽
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.DirDesc)
+        </dd>
+
+        <dt>
+            程式碼
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DirDesc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

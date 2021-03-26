@@ -1,0 +1,63 @@
+﻿@model IEnumerable<YoBlog.Models.DirectoryModel>
+
+@{
+    ViewBag.Title = "首頁";
+}
+
+    <div class="row">
+        <div class="col-md-4">
+            @Html.ActionLink("+新增內容", "Create", new { }, new { @class = "btn btn-outline-info" })
+        </div>
+        <div class="col-md-4">
+            <form action="@Url.Action("Index", "Home")" method="post" class="d-flex">
+                <input type="hidden" name="page" value="mgt" />
+                <input type="text" name="Search" class="form-control me-2" placeholder="請輸入查詢條件" value="@ViewBag.Search" />
+                <button type="submit" class="btn btn-outline-success">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row m-1">
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-title">
+                            <form action="@Url.Action("Index", "Home", new { page = "delete" })" method="post" class="float-end" onsubmit="return confirm('確定要刪除該筆資料?');">
+                                <input type="hidden" name="DeleteDirID" value="@item.DirID" />
+                                <button type="submit" class="btn btn-sm btn-danger m-1">X</button>
+                            </form>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">@item.DirTitle</h5>
+                            <p class="card-text">
+                            </p>
+                            <div class="text-center">
+                                <a href="@Url.Action("Details", "Home", new { id=item.DirID })" class="btn btn-primary">查看</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+
+    @section js {
+        <script type="text/javascript">
+
+            $('#btnDel').on('click', function () {
+                var id = this.dataset.id;
+                Delete(id);
+            });
+
+            function Delete() {
+                $.ajax
+            }
+
+        </script>
+    }

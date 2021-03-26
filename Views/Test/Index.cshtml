@@ -1,0 +1,41 @@
+﻿@section css {
+    <style>
+         /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+        #map {
+            position: absolute;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            /* display: contents; */
+            z-index: 0;
+            width:100%;
+            height:100%;
+        }
+
+         /* Optional: Makes the sample page fill the window. */
+         html,
+         body {
+             height: 100%;
+             margin: 0;
+             padding: 0;
+         }
+    </style>
+}
+
+<div id="map"></div>
+
+@section js {
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnn1owIuv13KV7LlKajfQjj1kzwWVZ_eo&callback=initMap&libraries=&v=weekly" async></script>
+    <script>
+        let map;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: -34.397, lng: 150.644 },
+                zoom: 8,
+            });
+        }
+    </script>
+}
